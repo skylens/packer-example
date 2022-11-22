@@ -1,0 +1,20 @@
+{
+  "name": "debian10demo",
+  "cpus": "2",
+  "memory": "1024",
+  "disk_size": "10240",
+  "headless": "false",
+  "network": "VM Network",
+  "iso_checksum": "sha256:75AA64071060402A594DCF1E14AFD669CA0F8BF757B56D4C9C1A31B8F7C8F931",
+  "iso_name": "debian-10.13.0-amd64-netinst.iso",
+  "iso_url": "http://cdimage.debian.org/cdimage/archive/10.13.0/amd64/iso-cd/debian-10.13.0-amd64-netinst.iso",
+  "shutdown_command": "poweroff",
+  "ssh_username": "debian",
+  "ssh_password": "debian",
+  "esxi_host": "main.m.com",
+  "esxi_datastore": "data",
+  "esxi_username": "root",
+  "esxi_password": "",
+  "vmware_guest_os_type": "debian10-64",
+  "output_directory": "output"
+}

@@ -1,0 +1,16 @@
+{
+    "name": "debian10demo",
+    "cpus": "2",
+    "memory": "1024",
+    "disk_size": "10240",
+    "headless": "false",
+    "network": "nat",
+    "iso_checksum": "none",
+    "iso_name": "debian-10.13.0-amd64-netinst.iso",
+    "iso_url": "http://cdimage.debian.org/cdimage/archive/10.13.0/amd64/iso-cd/debian-10.13.0-amd64-netinst.iso",
+    "shutdown_command": "poweroff",
+    "ssh_username": "debian",
+    "ssh_password": "debian",
+    "vmware_guest_os_type": "debian10-64",
+    "output_directory": "output"
+}

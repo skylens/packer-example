@@ -1,0 +1,19 @@
+{
+        "name": "ubuntudemo",
+        "cpus": "2",
+        "memory": "1024",
+        "disk_size": "10240",
+        "headless": "false",
+        "network": "VM Network",
+        "iso_checksum": "sha256:ed184f82112ee71038fdad47b76c687d275f36808a741d15ba9a9bf921b474fc",
+        "iso_name": "ubuntu-20.04.4-live-server-amd64.iso",
+        "iso_url": "https://mirrors.ustc.edu.cn/alpine/latest-stable/releases/x86_64/alpine-standard-3.16.3-x86_64.iso",
+        "shutdown_command": "poweroff",
+        "ssh_username": "root",
+        "ssh_password": "jetbrains",
+        "esxi_host": "main.m.com",
+        "esxi_datastore": "data",
+        "esxi_username": "root",
+        "esxi_password": "skylens116@qq.com",
+        "vmware_guest_os_type": "ubuntu64Guest"
+    }

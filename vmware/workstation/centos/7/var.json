@@ -1,0 +1,16 @@
+{
+    "name": "centos7demo",
+    "cpus": "2",
+    "memory": "1024",
+    "disk_size": "10240",
+    "headless": "false",
+    "network": "nat",
+    "iso_checksum": "sha256:07b94e6b1a0b0260b94c83d6bb76b26bf7a310dc78d7a9c7432809fb9bc6194a",
+    "iso_name": "CentOS-7-x86_64-Minimal-2009.iso",
+    "iso_url": "https://mirrors.aliyun.com/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-Minimal-2009.iso",
+    "shutdown_command": "poweroff",
+    "ssh_username": "centos",
+    "ssh_password": "centos",
+    "vmware_guest_os_type": "centos7-64",
+    "output_directory": "output"
+}
