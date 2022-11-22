@@ -1,12 +1,12 @@
 {
-    "_comment": "Build Ubuntu 2004",
+    "_comment": "Build Debian 10",
     "builders": [
         {
             "name": "{{user `name`}}",
             "type": "vmware-iso",
             "vm_name": "{{user `name`}}",
             "network_name": "{{ user `network` }}",
-            "guest_os_type": "{{ user `vmware_guest_os_type`}}",
+            "guest_os_type": "{{ user `vmware_guest_os_type` }}",
             "headless": "{{ user `headless`}}",
             "vnc_over_websocket": true,
             "insecure_connection": true,
@@ -15,6 +15,7 @@
                 "{{ user `iso_url` }}"
             ],
             "iso_checksum": "{{ user `iso_checksum` }}",
+            "output_directory": "{{ user `output_directory` }}",
             "http_directory": "http",
             "cpus": "{{ user `cups` }}",
             "memory": "{{ user `memory` }}",
@@ -23,18 +24,12 @@
             "sound": false,
             "boot_wait": "15s",
             "boot_command": [
-                "c<wait>",
-                "linux /casper/vmlinuz --- autoinstall ds=\"nocloud-net;seedfrom=http://{{.HTTPIP}}:{{.HTTPPort}}/\"",
-                "<enter><wait>",
-                "initrd /casper/initrd",
-                "<enter><wait>",
-                "boot",
-                "<enter>"
+                "<esc><wait>auto preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<enter>"
             ],
             "ssh_username": "{{ user `ssh_username` }}",
             "ssh_password": "{{ user `ssh_password` }}",
             "ssh_port": 22,
-            "ssh_wait_timeout": "10m",
+            "ssh_wait_timeout": "15m",
             "shutdown_command": "{{ user `shutdown_command` }}",
             "remote_type": "esx5",
             "version": 16,

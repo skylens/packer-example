@@ -87,7 +87,7 @@ crash.log
 packer.log
 
 # variables
-var.json
+#var.json
 
 # iso
 *.iso
