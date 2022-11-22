@@ -1,0 +1,76 @@
+{
+    "_comment": "Build AlpinLinux",
+    "builders": [
+        {
+            "boot_command": [
+                "root<enter><wait>",
+                "ifconfig eth0 up && udhcpc -i eth0<enter><wait5>",
+                "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/answerfile<enter><wait>",
+                "setup-alpine -f answerfile<enter>",
+                "<wait10>",
+                "jetbrains<enter>",
+                "jetbrains<enter>",
+                "<wait20>",
+                "<enter>",
+                "<wait10><wait10>y<enter>",
+                "<wait10><wait10><wait10><wait10>",
+                "reboot<enter>",
+                "<wait10><wait10><wait10><wait10>",
+                "root<enter>",
+                "jetbrains<enter><wait>",
+                "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/setup.sh<enter><wait>",
+                "sh /root/setup.sh<enter>"
+            ],
+            "boot_wait": "15s",
+            "cpus": "{{ user `cups` }}",
+            "memory": "{{ user `memory` }}",
+            "disk_size": "{{ user `disk_size` }}",
+            "sound": false,
+            "network": "{{ user `network` }}",
+            "network_adapter_type": "vmxnet3",
+            "guest_os_type": "{{ user `vmware_guest_os_type` }}",
+            "headless": "{{ user `headless` }}",
+            "vnc_disable_password": true,
+            "http_directory": "http",
+            "iso_checksum": "{{ user `iso_checksum` }}",
+            "iso_urls": [
+                "{{ user `iso_name` }}",
+                "{{ user `iso_url` }}"
+            ],
+            "output_directory": "{{ user `output_directory` }}",
+            "shutdown_command": "{{ user `shutdown_command` }}",
+            "ssh_username": "{{ user `ssh_username` }}",
+            "ssh_password": "{{ user `ssh_password` }}",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "15m",
+            "type": "vmware-iso",
+            "version": 9,
+            "vm_name": "{{ user `name` }}",
+            "vmx_data": {
+                "ethernet0.connectionType": "{{ user `network` }}",
+                "ethernet0.addressType": "generated",
+                "ethernet0.present": "TRUE",
+                "ethernet0.startConnected": "TRUE",
+                "ethernet0.virtualDev": "vmxnet3",
+                "ethernet0.wakeOnPcktRcv": "FALSE",
+                "virtualHW.version": "9"
+            }
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "shell-local",
+            "inline": [
+                "ovftool {{ user `output_directory` }}/{{ user `name` }}.vmx {{ user `output_directory` }}/{{ user `vm_name` }}.ova"
+            ]
+        }
+    ],
+    "provisioners": [
+        {
+            "inline": [
+                "ls /"
+            ],
+            "type": "shell"
+        }
+    ]
+}

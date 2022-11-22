@@ -1,0 +1,57 @@
+{
+    "_comment": "Build Ubuntu 2004",
+    "builders": [
+        {
+            "name": "{{user `name`}}",
+            "type": "vmware-iso",
+            "vm_name": "{{user `name`}}",
+            "network": "{{ user `network` }}",
+            "guest_os_type": "{{ user `vmware_guest_os_type`}}",
+            "headless": "{{ user `headless`}}",
+            "vnc_disable_password": true,
+            "iso_urls": [
+                "{{ user `iso_name` }}",
+                "{{ user `iso_url` }}"
+            ],
+            "iso_checksum": "{{ user `iso_checksum` }}",
+            "http_directory": "http",
+            "cpus": "{{ user `cups` }}",
+            "memory": "{{ user `memory` }}",
+            "disk_size": "{{ user `disk_size` }}",
+            "sound": false,
+            "boot_wait": "15s",
+            "boot_command": [
+                "c<wait>",
+                "linux /casper/vmlinuz --- autoinstall ds=\"nocloud-net;seedfrom=http://{{.HTTPIP}}:{{.HTTPPort}}/\"",
+                "<enter><wait>",
+                "initrd /casper/initrd",
+                "<enter><wait>",
+                "boot",
+                "<enter>"
+            ],
+            "ssh_username": "{{ user `ssh_username` }}",
+            "ssh_password": "{{ user `ssh_password` }}",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "10m",
+            "shutdown_command": "{{ user `shutdown_command` }}",
+            "version": 16,
+            "vmx_data": {
+                "ethernet0.connectionType": "{{ user `network` }}",
+                "ethernet0.addressType": "generated",
+                "ethernet0.present": "TRUE",
+                "ethernet0.startConnected": "TRUE",
+                "ethernet0.virtualDev": "vmxnet3",
+                "ethernet0.wakeOnPcktRcv": "FALSE",
+                "virtualHW.version": "16"
+            }
+        }
+    ],
+    "provisioners": [
+        {
+            "inline": [
+                "ls /"
+            ],
+            "type": "shell"
+        }
+    ]
+}
